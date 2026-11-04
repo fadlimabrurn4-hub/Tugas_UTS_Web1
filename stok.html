@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog &amp; Stok – Toko Buku</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body data-page="stok">
+  <a class="skip" href="#konten">Lewati ke konten</a>
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="assets/logo.svg" alt="" width="36" height="36"><span>Toko<em>Buku</em></span></a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" data-page="dashboard">Beranda</a>
+      <a href="stok.html" data-page="stok">Stok</a>
+      <a href="checkout.html" data-page="checkout">Pesan <span class="badge-cart" hidden>0</span></a>
+      <a href="tracking.html" data-page="tracking">Tracking</a>
+    </nav>
+    <div class="user"><span class="avatar" id="avatar" aria-hidden="true"></span><span id="namaUser"></span><button type="button" class="btn btn-ghost btn-sm" id="btnLogout">Keluar</button></div>
+  </header>
+
+  <main id="konten" class="wrap">
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Informasi stok</p>
+        <h1>Katalog buku</h1>
+        <p class="lead">Data dimuat dari <code>dataKatalogBuku</code> di <code>data.js</code>. Tambahkan stok baru, ubah, atau masukkan ke keranjang.</p>
+      </div>
+    </div>
+
+    <div class="chips" aria-label="Ringkasan stok">
+      <span class="chip"><strong id="sumJudul">0</strong> judul</span>
+      <span class="chip"><strong id="sumStok">0</strong> eksemplar</span>
+      <span class="chip">Nilai persediaan <strong id="sumNilai">Rp 0</strong></span>
+      <span class="chip"><strong id="sumMenipis">0</strong> stok menipis / habis</span>
+    </div>
+
+    <section class="toolbar" aria-label="Pencarian dan filter">
+      <label class="sr-only" for="cari">Cari buku</label>
+      <input type="search" id="cari" placeholder="Cari judul, kategori, atau kode…">
+      <label class="sr-only" for="filterKategori">Filter kategori</label>
+      <select id="filterKategori"><option value="">Semua kategori</option></select>
+      <label class="sr-only" for="urut">Urutkan</label>
+      <select id="urut">
+        <option value="judul">Urut: Judul A–Z</option>
+        <option value="hargaAsc">Harga termurah</option>
+        <option value="hargaDesc">Harga termahal</option>
+        <option value="stokAsc">Stok tersedikit</option>
+        <option value="stokDesc">Stok terbanyak</option>
+      </select>
+      <button type="button" class="btn btn-primary" id="btnTambah">+ Tambah stok baru</button>
+    </section>
+
+    <p class="muted" id="infoJumlah" aria-live="polite"></p>
+    <div class="table-wrap">
+      <table class="responsive">
+        <caption class="sr-only">Daftar katalog buku beserta stok</caption>
+        <thead>
+          <tr>
+            <th scope="col">Buku</th><th scope="col">Kode</th><th scope="col">Kategori</th>
+            <th scope="col" class="num">Harga</th><th scope="col">Stok</th><th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyStok"></tbody>
+      </table>
+      <p class="empty" id="kosongStok" hidden>Tidak ada buku yang cocok dengan pencarian Anda.</p>
+    </div>
+  </main>
+  <footer class="footer">© 2026 Toko Buku · Tugas UTS Pemrograman Web 1</footer>
+
+  <!-- Modal tambah / ubah buku -->
+  <dialog id="dlgBuku" class="modal" aria-labelledby="judulDlg">
+    <div class="modal-body">
+      <div class="modal-head">
+        <div><p class="eyebrow">Katalog</p><h2 id="judulDlg">Tambah buku baru</h2></div>
+        <button type="button" class="modal-x" data-close aria-label="Tutup">×</button>
+      </div>
+      <form id="formBuku" novalidate>
+        <div class="form-grid">
+          <div class="field"><label for="fKode">Kode</label><input id="fKode" name="kode" readonly><small class="error-msg"></small></div>
+          <div class="field"><label for="fEdisi">Edisi</label><input id="fEdisi" name="edisi" type="number" min="1" step="1"><small class="error-msg" role="alert"></small></div>
+          <div class="field full"><label for="fJudul">Judul buku</label><input id="fJudul" name="judul" type="text" required><small class="error-msg" role="alert"></small></div>
+          <div class="field full"><label for="fKategori">Kategori</label><input id="fKategori" name="kategori" type="text" list="daftarKategori" placeholder="Pilih atau ketik kategori baru" required><datalist id="daftarKategori"></datalist><small class="error-msg" role="alert"></small></div>
+          <div class="field"><label for="fHarga">Harga (Rp)</label><input id="fHarga" name="harga" type="number" min="1000" step="500" required><small class="error-msg" role="alert"></small></div>
+          <div class="field"><label for="fStok">Stok</label><input id="fStok" name="stok" type="number" min="0" step="1" required><small class="error-msg" role="alert"></small></div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Batal</button>
+          <button type="submit" class="btn btn-primary" id="btnSimpanBuku">Tambah ke katalog</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>

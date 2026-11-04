@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk – Toko Buku</title>
+  <meta name="description" content="Masuk ke Toko Buku untuk mengelola stok, pemesanan, dan pengiriman buku.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body data-page="login">
+  <main class="login">
+    <section class="login-hero" aria-label="Tentang Toko Buku">
+      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="40" height="40"><span>Toko<em>Buku</em></span></a>
+      <div class="hero-copy">
+        <p class="eyebrow" style="color:var(--gold)">Toko Buku Daring · Sejak 2026</p>
+        <h1>Setiap buku,<br>Sebuah <em>Pintu</em>.</h1>
+        <p>Kelola katalog, pesanan, dan pengiriman buku dalam satu rak digital yang rapi.</p>
+      </div>
+      <div class="shelf" aria-hidden="true">
+        <span style="--h:150px;--w:30px;--c:#d9a441;--i:0"></span>
+        <span style="--h:190px;--w:24px;--c:#c4552d;--i:1"></span>
+        <span style="--h:130px;--w:34px;--c:#f6efe0;--i:2"></span>
+        <span style="--h:205px;--w:28px;--c:#5f7adb;--i:3"></span>
+        <span class="miring" style="--h:170px;--w:26px;--c:#a8d5ba;--i:4"></span>
+        <span style="--h:140px;--w:32px;--c:#8c2f39;--i:5"></span>
+        <span style="--h:185px;--w:22px;--c:#e0a458;--i:6"></span>
+        <span style="--h:160px;--w:36px;--c:#7fc8d6;--i:7"></span>
+        <span style="--h:120px;--w:26px;--c:#d9a441;--i:8"></span>
+        <span style="--h:195px;--w:30px;--c:#f6efe0;--i:9"></span>
+        <span style="--h:150px;--w:24px;--c:#c4552d;--i:10"></span>
+        <span style="--h:175px;--w:34px;--c:#3a2a5e;--i:11"></span>
+        <span style="--h:135px;--w:28px;--c:#a8d5ba;--i:12"></span>
+        <span style="--h:200px;--w:26px;--c:#e6b800;--i:13"></span>
+      </div>
+    </section>
+
+    <section class="login-panel" aria-labelledby="judulLogin">
+      <div class="login-card card">
+        <p class="eyebrow">Selamat datang kembali</p>
+        <h2 id="judulLogin">Masuk ke akun Anda</h2>
+        <form id="formLogin" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Masukkan Email" autocomplete="username" required>
+            <small class="error-msg" role="alert"></small>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password" required>
+              <button type="button" class="link" id="togglePass" aria-pressed="false">Tampilkan</button>
+            </div>
+            <small class="error-msg" role="alert"></small>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+
+        <div class="login-links">
+          <button type="button" class="link" data-open="dlgLupa">Lupa Password</button>
+          <button type="button" class="link" data-open="dlgDaftar">Daftar</button>
+        </div>
+
+        <aside class="demo" aria-label="Akun demo">
+          <strong>Akun demo</strong><br>
+          <code>fadli@gmail.com</code> / <code>fadli123</code><br>
+          <button type="button" class="link" id="isiDemo">Isi otomatis</button>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Lupa Password -->
+  <dialog id="dlgLupa" class="modal" aria-labelledby="tLupa">
+    <div class="modal-body">
+      <div class="modal-head">
+        <div><p class="eyebrow">Pemulihan akun</p><h2 id="tLupa">Lupa Password</h2></div>
+        <button type="button" class="modal-x" data-close aria-label="Tutup">×</button>
+      </div>
+      <p class="muted">Masukkan email yang terdaftar. Kami akan mengirim tautan untuk mengatur ulang password.</p>
+      <form id="formLupa" novalidate>
+        <div class="field">
+          <label for="lupaEmail">Email terdaftar</label>
+          <input type="email" id="lupaEmail" name="lupaEmail" placeholder="nama@email.com" required>
+          <small class="error-msg" role="alert"></small>
+        </div>
+        <div id="lupaHasil" class="notice" role="status" hidden></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Tutup</button>
+          <button type="submit" class="btn btn-primary">Kirim tautan</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Modal: Daftar -->
+  <dialog id="dlgDaftar" class="modal" aria-labelledby="tDaftar">
+    <div class="modal-body">
+      <div class="modal-head">
+        <div><p class="eyebrow">Akun baru</p><h2 id="tDaftar">Daftar</h2></div>
+        <button type="button" class="modal-x" data-close aria-label="Tutup">×</button>
+      </div>
+      <form id="formDaftar" novalidate>
+        <div class="field">
+          <label for="dNama">Nama lengkap</label>
+          <input type="text" id="dNama" name="dNama" autocomplete="name" required>
+          <small class="error-msg" role="alert"></small>
+        </div>
+        <div class="field">
+          <label for="dEmail">Email</label>
+          <input type="email" id="dEmail" name="dEmail" autocomplete="email" required>
+          <small class="error-msg" role="alert"></small>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="dPass">Password</label>
+            <input type="password" id="dPass" name="dPass" autocomplete="new-password" required>
+            <small class="error-msg" role="alert"></small>
+          </div>
+          <div class="field">
+            <label for="dPass2">Ulangi password</label>
+            <input type="password" id="dPass2" name="dPass2" autocomplete="new-password" required>
+            <small class="error-msg" role="alert"></small>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Batal</button>
+          <button type="submit" class="btn btn-primary">Buat akun</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>

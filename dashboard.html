@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – Toko Buku</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body data-page="dashboard">
+  <a class="skip" href="#konten">Lewati ke konten</a>
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="assets/logo.svg" alt="" width="36" height="36"><span>Toko<em>Buku</em></span></a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" data-page="dashboard">Beranda</a>
+      <a href="stok.html" data-page="stok">Stok</a>
+      <a href="checkout.html" data-page="checkout">Pesan <span class="badge-cart" hidden>0</span></a>
+      <a href="tracking.html" data-page="tracking">Tracking</a>
+    </nav>
+    <div class="user"><span class="avatar" id="avatar" aria-hidden="true"></span><span id="namaUser"></span><button type="button" class="btn btn-ghost btn-sm" id="btnLogout">Keluar</button></div>
+  </header>
+
+  <main id="konten" class="wrap">
+    <section class="hero" aria-labelledby="sapaan">
+      <div>
+        <p class="eyebrow" id="tanggal"></p>
+        <h1 id="sapaan">Halo!</h1>
+        <p class="lead">Berikut ringkasan rak toko Anda hari ini.</p>
+      </div>
+      <div class="clock" role="timer" aria-label="Jam lokal">
+        <span id="jam">--:--:--</span>
+        <small id="zona"></small>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Ringkasan toko">
+      <div class="stat"><strong id="statJudul">0</strong><span>Judul buku</span></div>
+      <div class="stat"><strong id="statStok">0</strong><span>Total stok (eksemplar)</span></div>
+      <div class="stat"><strong id="statPesanan">0</strong><span>Total pesanan</span></div>
+      <div class="stat"><strong id="statOmzet">Rp 0</strong><span>Total pendapatan</span></div>
+    </section>
+
+    <h2 class="section-title">Menu utama</h2>
+    <nav class="menu-grid" aria-label="Menu dashboard">
+      <a class="menu-card" href="stok.html"><span class="arrow" aria-hidden="true">↗</span><span class="no">01</span><h3>Informasi Stok / Katalog</h3><p>Lihat, cari, dan tambah stok buku.</p></a>
+      <a class="menu-card" href="tracking.html"><span class="arrow" aria-hidden="true">↗</span><span class="no">02</span><h3>Tracking Pengiriman</h3><p>Lacak paket dengan Nomor Delivery Order.</p></a>
+      <a class="menu-card" href="checkout.html"><span class="arrow" aria-hidden="true">↗</span><span class="no">3</span><h3>Buat Pesanan</h3><p>Isi data pemesan dan pembayaran.</p></a>
+    </nav>
+
+    <h2 class="section-title">Pesanan terbaru</h2>
+    <ul class="recent" id="listTerbaru"></ul>
+  </main>
+  <footer class="footer">© 2026 Toko Buku · Tugas UTS Pemrograman Web 1</footer>
+</body>
+</html>

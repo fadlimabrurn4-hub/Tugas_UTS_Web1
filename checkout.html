@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pemesanan – Toko Buku</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body data-page="checkout">
+  <a class="skip" href="#konten">Lewati ke konten</a>
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="assets/logo.svg" alt="" width="36" height="36"><span>Toko<em>Buku</em></span></a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" data-page="dashboard">Beranda</a>
+      <a href="stok.html" data-page="stok">Stok</a>
+      <a href="checkout.html" data-page="checkout">Pesan <span class="badge-cart" hidden>0</span></a>
+      <a href="tracking.html" data-page="tracking">Tracking</a>
+    </nav>
+    <div class="user"><span class="avatar" id="avatar" aria-hidden="true"></span><span id="namaUser"></span><button type="button" class="btn btn-ghost btn-sm" id="btnLogout">Keluar</button></div>
+  </header>
+
+  <main id="konten" class="wrap">
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Checkout</p>
+        <h1>Pemesanan buku</h1>
+        <p class="lead">Atur isi pesanan, lengkapi data pemesan, lalu pilih pembayaran.</p>
+      </div>
+    </div>
+
+    <div class="checkout">
+      <div class="stack">
+        <section class="card" aria-labelledby="tItem">
+          <h2 id="tItem">1. Data pesanan</h2>
+          <div id="tabelKeranjang" class="table-wrap" hidden>
+            <table class="responsive">
+              <caption class="sr-only">Daftar buku yang dipesan</caption>
+              <thead><tr><th scope="col">Buku</th><th scope="col" class="num">Harga</th><th scope="col">Jumlah</th><th scope="col" class="num">Subtotal</th><th scope="col">Aksi</th></tr></thead>
+              <tbody id="tbodyKeranjang"></tbody>
+            </table>
+          </div>
+          <p class="empty" id="kosongKeranjang">Keranjang masih kosong. Pilih buku di bawah atau buka <a href="stok.html">katalog</a>.</p>
+
+          <div class="inline-form">
+            <label class="sr-only" for="pilihBuku">Pilih buku</label>
+            <select id="pilihBuku"></select>
+            <label class="sr-only" for="qtyTambah">Jumlah</label>
+            <input type="number" id="qtyTambah" min="1" value="1">
+            <button type="button" class="btn" id="btnTambahItem">Tambah</button>
+          </div>
+        </section>
+
+        <form id="formCheckout" novalidate>
+          <section class="card" aria-labelledby="tPemesan">
+            <h2 id="tPemesan">2. Informasi pemesan</h2>
+            <div class="form-grid">
+              <div class="field"><label for="nama">Nama lengkap</label><input id="nama" name="nama" type="text" autocomplete="name" required><small class="error-msg" role="alert"></small></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><small class="error-msg" role="alert"></small></div>
+              <div class="field"><label for="telepon">No. telepon / WhatsApp</label><input id="telepon" name="telepon" type="tel" placeholder="081234567890" autocomplete="tel" required><small class="error-msg" role="alert"></small></div>
+              <div class="field"><label for="kota">Kota</label><input id="kota" name="kota" type="text" autocomplete="address-level2" required><small class="error-msg" role="alert"></small></div>
+              <div class="field full"><label for="alamat">Alamat lengkap</label><textarea id="alamat" name="alamat" placeholder="Nama jalan, nomor rumah, RT/RW, kelurahan" required></textarea><small class="error-msg" role="alert"></small></div>
+              <div class="field"><label for="kodepos">Kode pos</label><input id="kodepos" name="kodepos" type="text" inputmode="numeric" maxlength="5" autocomplete="postal-code" required><small class="error-msg" role="alert"></small></div>
+              <div class="field"><label for="ekspedisi">Ekspedisi</label><select id="ekspedisi" name="ekspedisi" required></select><small class="error-msg" role="alert"></small></div>
+              <div class="field full"><label for="catatan">Catatan untuk kurir (opsional)</label><input id="catatan" name="catatan" type="text" maxlength="120"><small class="error-msg"></small></div>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="tBayar" style="margin-top:1.5rem">
+            <h2 id="tBayar">3. Pembayaran</h2>
+            <fieldset class="field">
+              <legend>Metode pembayaran</legend>
+              <div class="pay-grid" id="metodeBayar"></div>
+              <small class="error-msg" role="alert"></small>
+            </fieldset>
+            <button type="submit" class="btn btn-primary btn-block" id="btnPesan">Buat pesanan</button>
+          </section>
+        </form>
+      </div>
+
+      <aside class="card summary" aria-labelledby="tRingkas">
+        <h2 id="tRingkas">Ringkasan</h2>
+        <dl>
+          <div class="row"><dt>Jumlah buku</dt><dd id="rItem">0</dd></div>
+          <div class="row"><dt>Subtotal</dt><dd id="rSub">Rp 0</dd></div>
+          <div class="row"><dt>Ongkos kirim</dt><dd id="rOngkir">Rp 0</dd></div>
+          <div class="row"><dt>Diskon</dt><dd id="rDiskon">Rp 0</dd></div>
+          <div class="row total"><dt>Total</dt><dd id="rTotal">Rp 0</dd></div>
+        </dl>
+        <label class="sr-only" for="kupon">Kode kupon</label>
+        <div class="kupon">
+          <input id="kupon" type="text" placeholder="Kode kupon" autocomplete="off">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnKupon">Pakai</button>
+        </div>
+        <div id="pesanKupon" class="notice" role="status" hidden></div>
+        <p class="muted" style="margin-top:1rem">Coba kupon <strong>BUKUBARU</strong> (diskon 10%) atau <strong>ONGKIRGRATIS</strong>.</p>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer">© 2026 Toko Buku · Tugas UTS Pemrograman Web 1</footer>
+
+  <!-- Modal sukses -->
+  <dialog id="dlgSukses" class="modal modal-sm" aria-labelledby="tSukses">
+    <div class="modal-body notif notif-success">
+      <div class="notif-ico" aria-hidden="true">✓</div>
+      <h3 id="tSukses">Pesanan berhasil dibuat!</h3>
+      <p class="muted">Simpan Nomor Delivery Order Anda:</p>
+      <p class="do-big" id="noDO"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close>Tutup</button>
+        <a class="btn btn-primary" id="linkLacak" href="tracking.html">Lacak pesanan</a>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

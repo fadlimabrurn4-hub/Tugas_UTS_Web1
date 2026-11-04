@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracking Pengiriman – Toko Buku</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body data-page="tracking">
+  <a class="skip" href="#konten">Lewati ke konten</a>
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="assets/logo.svg" alt="" width="36" height="36"><span>Toko<em>Buku</em></span></a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" data-page="dashboard">Beranda</a>
+      <a href="stok.html" data-page="stok">Stok</a>
+      <a href="checkout.html" data-page="checkout">Pesan <span class="badge-cart" hidden>0</span></a>
+      <a href="tracking.html" data-page="tracking">Tracking</a>
+    </nav>
+    <div class="user"><span class="avatar" id="avatar" aria-hidden="true"></span><span id="namaUser"></span><button type="button" class="btn btn-ghost btn-sm" id="btnLogout">Keluar</button></div>
+  </header>
+
+  <main id="konten" class="wrap">
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Informasi pengiriman</p>
+        <h1>Lacak paket Anda</h1>
+        <p class="lead">Masukkan Nomor Delivery Order untuk melihat status dan detail pengiriman.</p>
+      </div>
+    </div>
+
+    <section class="card search-card" aria-label="Form pencarian">
+      <form id="formTracking" novalidate>
+        <div class="search-row">
+          <div class="field">
+            <label for="nomorDO">Nomor Delivery Order</label>
+            <input type="text" id="nomorDO" name="nomorDO" placeholder="Contoh: DO-20261002" autocomplete="off" required>
+            <small class="error-msg" role="alert"></small>
+          </div>
+          <button type="submit" class="btn btn-primary" id="btnCari" style="align-self:flex-start;margin-top:1.55rem">Cari</button>
+        </div>
+      </form>
+      <p class="muted" style="margin:1rem 0 .5rem">Coba nomor contoh:</p>
+      <div class="chips" id="contohDO" style="margin:0"></div>
+    </section>
+
+    <section id="hasilTracking" aria-label="Hasil pencarian" hidden></section>
+  </main>
+  <footer class="footer">© 2026 Toko Buku · Tugas UTS Pemrograman Web 1</footer>
+</body>
+</html>
