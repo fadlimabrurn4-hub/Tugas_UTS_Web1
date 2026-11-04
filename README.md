@@ -86,18 +86,19 @@ Halaman untuk membuat pesanan, terdiri dari tiga bagian.
 - **Informasi Pemesan dan Pembayaran:** nama dan email terisi otomatis dari akun yang login. Pengguna mengisi alamat pengiriman dan memilih metode pembayaran (Transfer Bank, COD, atau E-Wallet). Saat **Buat Pesanan** diklik, sistem memastikan keranjang tidak kosong, membuat nomor Delivery Order baru (`DO1001`, `DO1002`, dan seterusnya), menampilkan nomor tersebut, lalu mengosongkan keranjang dan form.
 - **History Transaksi:** tabel berisi No. DO, Nama, Total, dan metode Pembayaran dari setiap pesanan yang sudah dibuat.   
 
-<img src="screenshot/checkout.png">   
-<img src="screenshot/checkout1.png">
+<img src="foto/Halaman_checkout.png">   
+<img src="foto/Halaman_checkout1.png">
 
 
 ### 5. Halaman Tracking Pengiriman (`tracking.html`)
 Halaman untuk melacak status pesanan berdasarkan nomor Delivery Order.
 
 - **Form pencarian:** masukkan nomor DO lalu klik **Cari**. Nomor yang dapat dicoba:
-  - `20230012`: atas nama Rina Wulandari, status *Dalam Perjalanan*, ekspedisi JNE.
-  - `20230013`: atas nama Agus Pranoto, status *Dikirim*, ekspedisi Pos Indonesia.
-  - Nomor DO dari pesanan yang dibuat sendiri (misalnya `DO1001`) dengan status *Pesanan Diproses*.
+  - `20261001`: atas nama Rina Kartika, status *Terkirim*, ekspedisi JNE.
+  - `20261002`: atas nama Budi Santoso, status *Dikirim*, ekspedisi Pos Indonesia.
+  - Nomor DO dari pesanan yang dibuat sendiri (misalnya `DO1001`) dengan status *Pesanan Terkirim*.
 - **Hasil pencarian:** menampilkan nomor DO, nama pemesan, status beserta bar progres, ekspedisi, tanggal kirim, jenis paket, total pembayaran, dan **riwayat perjalanan** paket secara berurutan.
 - **Nomor tidak ditemukan:** muncul pesan "Data tidak ditemukan" agar pengguna memeriksa kembali nomor DO.   
 
-<img src="screenshot/tracking.png">
+<img src="foto/Halaman_tracking.png">
+<img src="foto/Halaman_tracking1.png">
